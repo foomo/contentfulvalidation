@@ -1,6 +1,6 @@
 package validator
 
-import "github.com/foomo/contentfulvalidation/contants"
+import "github.com/foomo/contentfulvalidation/constants"
 
 type ValidationResult struct {
 	ID              ModelID                    `json:"id"`
@@ -30,12 +30,12 @@ func (result *ValidationResult) Log(severity Severity, message string, code Mess
 func (result *ValidationResult) UpdateHealth() {
 	if len(result.Messages) > 0 {
 		for _, msg := range result.Messages {
-			if msg.Severity == contants.SeverityError || msg.Severity == contants.SeverityFatal {
-				result.Health = contants.HealthError
+			if msg.Severity == constants.SeverityError || msg.Severity == constants.SeverityFatal {
+				result.Health = constants.HealthError
 				return
 			}
-			if msg.Severity == contants.SeverityWarn {
-				result.Health = contants.HealthWarn
+			if msg.Severity == constants.SeverityWarn {
+				result.Health = constants.HealthWarn
 			}
 		}
 	}

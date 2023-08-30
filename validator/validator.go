@@ -1,7 +1,7 @@
 package validator
 
 import (
-	"github.com/foomo/contentfulvalidation/contants"
+	"github.com/foomo/contentfulvalidation/constants"
 	"github.com/foomo/contentfulvalidation/errors"
 	"github.com/foomo/contentfulvalidation/utils"
 	"strings"
@@ -93,8 +93,8 @@ func (v *Validator) MapListToCSV(modelType ModelType) (
 			return "", err
 		}
 
-		if v.Health != contants.HealthOk {
-			date, err := utils.ConvertTimeFormat(v.LastUpdatedDate, time.RFC3339, contants.DateFormat)
+		if v.Health != constants.HealthOk {
+			date, err := utils.ConvertTimeFormat(v.LastUpdatedDate, time.RFC3339, constants.DateFormat)
 			if err != nil {
 				return "", err
 			}

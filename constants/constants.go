@@ -1,4 +1,4 @@
-package contants
+package constants
 
 import (
 	"github.com/foomo/contentfulvalidation/validator"
