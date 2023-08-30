@@ -1,0 +1,42 @@
+package validator
+
+import "github.com/foomo/contentfulvalidation/contants"
+
+type ValidationResult struct {
+	ID              ModelID                    `json:"id"`
+	Title           string                     `json:"title,omitempty"`
+	InternalTitle   string                     `json:"internalTitle,omitempty"`
+	LastUpdatedDate string                     `json:"lastUpdatedDate,omitempty"`
+	ModelType       ModelType                  `json:"modelType"`
+	Health          Health                     `json:"health"`
+	Messages        []*ValidationResultMessage `json:"messages"`
+}
+
+type ValidationResultMessage struct {
+	Code     MessageCode `json:"code"`
+	Message  string      `json:"message"`
+	Severity Severity    `json:"severity"`
+}
+
+func (result *ValidationResult) Log(severity Severity, message string, code MessageCode) {
+	msg := &ValidationResultMessage{
+		Code:     code,
+		Message:  message,
+		Severity: severity,
+	}
+	result.Messages = append(result.Messages, msg)
+}
+
+func (result *ValidationResult) UpdateHealth() {
+	if len(result.Messages) > 0 {
+		for _, msg := range result.Messages {
+			if msg.Severity == contants.SeverityError || msg.Severity == contants.SeverityFatal {
+				result.Health = contants.HealthError
+				return
+			}
+			if msg.Severity == contants.SeverityWarn {
+				result.Health = contants.HealthWarn
+			}
+		}
+	}
+}

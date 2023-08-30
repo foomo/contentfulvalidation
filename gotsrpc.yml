@@ -1,0 +1,13 @@
+module:
+  name: github.com/foomo/contentfulvalidation
+  path: ./
+
+targets:
+  services:
+    services:
+      /services/contenfulvalidation/validation: Validation
+      /services/contenfulvalidation/webhook: Webhook
+    package: github.com/foomo/contentfulvalidation/services
+    tsrpc:
+      - Validation
+      - Webhook
