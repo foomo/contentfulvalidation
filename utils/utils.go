@@ -3,7 +3,7 @@ package utils
 import (
 	"encoding/json"
 	catvo "github.com/bestbytes/catalogue/vo"
-	"github.com/foomo/contentfulvalidation/contants"
+	"github.com/foomo/contentfulvalidation/constants"
 	"github.com/foomo/contentfulvalidation/validator"
 	"time"
 
@@ -63,7 +63,7 @@ func InitEmptyValidationResult(modelType validator.ModelType, modelID validator.
 		InternalTitle:   internalTitle,
 		LastUpdatedDate: lastUpdatedDate,
 		ModelType:       modelType,
-		Health:          contants.HealthOk,
+		Health:          constants.HealthOk,
 		Messages:        messages,
 	}
 }
