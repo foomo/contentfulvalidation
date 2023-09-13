@@ -8,17 +8,17 @@ type ValidationResult struct {
 	InternalTitle   string                     `json:"internalTitle,omitempty"`
 	LastUpdatedDate string                     `json:"lastUpdatedDate,omitempty"`
 	ModelType       ModelType                  `json:"modelType"`
-	Health          Health                     `json:"health"`
+	Health          constants.Health           `json:"health"`
 	Messages        []*ValidationResultMessage `json:"messages"`
 }
 
 type ValidationResultMessage struct {
-	Code     MessageCode `json:"code"`
-	Message  string      `json:"message"`
-	Severity Severity    `json:"severity"`
+	Code     MessageCode        `json:"code"`
+	Message  string             `json:"message"`
+	Severity constants.Severity `json:"severity"`
 }
 
-func (result *ValidationResult) Log(severity Severity, message string, code MessageCode) {
+func (result *ValidationResult) Log(severity constants.Severity, message string, code MessageCode) {
 	msg := &ValidationResultMessage{
 		Code:     code,
 		Message:  message,

@@ -1,12 +1,12 @@
 package validator
 
 import (
-	"github.com/foomo/contentfulvalidation/constants"
-	"github.com/foomo/contentfulvalidation/errors"
-	"github.com/foomo/contentfulvalidation/utils"
 	"strings"
 	"time"
 
+	"github.com/foomo/contentfulvalidation/constants"
+	"github.com/foomo/contentfulvalidation/errors"
+	"github.com/foomo/contentfulvalidation/utils"
 	"github.com/foomo/contentserver/client"
 	keellog "github.com/foomo/keel/log"
 	"go.uber.org/zap"
@@ -158,4 +158,17 @@ func (v *Validator) getValidatorByType(modelType ModelType) (ModelValidator, *er
 		return nil, errors.ErrValidationErrorUnknownType
 	}
 	return validator, nil
+}
+
+func InitEmptyValidationResult(modelType ModelType, modelID ModelID, title string, internalTitle string, lastUpdatedDate string) *ValidationResult {
+	var messages []*ValidationResultMessage
+	return &ValidationResult{
+		ID:              modelID,
+		Title:           title,
+		InternalTitle:   internalTitle,
+		LastUpdatedDate: lastUpdatedDate,
+		ModelType:       modelType,
+		Health:          constants.HealthOk,
+		Messages:        messages,
+	}
 }

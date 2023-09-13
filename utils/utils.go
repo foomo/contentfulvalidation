@@ -2,11 +2,9 @@ package utils
 
 import (
 	"encoding/json"
-	catvo "github.com/bestbytes/catalogue/vo"
-	"github.com/foomo/contentfulvalidation/constants"
-	"github.com/foomo/contentfulvalidation/validator"
 	"time"
 
+	catvo "github.com/bestbytes/catalogue/vo"
 	"github.com/foomo/contentful"
 	"github.com/pkg/errors"
 )
@@ -53,17 +51,4 @@ func ConvertTimeFormat(timeToFormat string, parseTemplate string, formatTemplate
 		return "", err
 	}
 	return p.Format(formatTemplate), nil
-}
-
-func InitEmptyValidationResult(modelType validator.ModelType, modelID validator.ModelID, title string, internalTitle string, lastUpdatedDate string) *validator.ValidationResult {
-	var messages []*validator.ValidationResultMessage
-	return &validator.ValidationResult{
-		ID:              modelID,
-		Title:           title,
-		InternalTitle:   internalTitle,
-		LastUpdatedDate: lastUpdatedDate,
-		ModelType:       modelType,
-		Health:          constants.HealthOk,
-		Messages:        messages,
-	}
 }
