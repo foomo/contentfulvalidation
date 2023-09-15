@@ -1,20 +1,16 @@
 package constants
 
-import (
-	"github.com/foomo/contentfulvalidation/validator"
+const (
+	SeverityFatal Severity = "fatal"
+	SeverityError Severity = "error"
+	SeverityWarn  Severity = "warn"
+	SeverityInfo  Severity = "info"
 )
 
 const (
-	SeverityFatal validator.Severity = "fatal"
-	SeverityError validator.Severity = "error"
-	SeverityWarn  validator.Severity = "warn"
-	SeverityInfo  validator.Severity = "info"
-)
-
-const (
-	HealthError validator.Health = "error"
-	HealthWarn  validator.Health = "warn"
-	HealthOk    validator.Health = "ok"
+	HealthError Health = "error"
+	HealthWarn  Health = "warn"
+	HealthOk    Health = "ok"
 )
 
 const DateFormat = "02 Jan 2006"
