@@ -14,10 +14,10 @@ const (
 )
 
 const (
-	MissingQuerryFieldValues QueryError = "Missing field values"
-	QuerryValueExpired       QueryError = "Querry field value is expired"
-	MissingQuerryCondition   QueryError = "Missing querry condition"
-	MissingQuerryField       QueryError = "Querry Field is empty"
+	MissingQueryFieldValues QueryError = "Missing field values"
+	QueryValueExpired       QueryError = "Query field value is expired"
+	MissingQueryCondition   QueryError = "Missing query condition"
+	MissingQueryField       QueryError = "Query Field is empty"
 )
 
 const DateFormat = "02 Jan 2006"

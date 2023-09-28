@@ -9,10 +9,10 @@ func ValidateQuery(query *catvo.Query, attributes catvo.Attributes) (constants.Q
 
 	isValueExpired := func(value string, def catvo.AttributeDefinition) (constants.QueryError, bool) {
 		if len(value) < 1 {
-			return constants.MissingQuerryFieldValues, true
+			return constants.MissingQueryFieldValues, true
 		}
 		if _, ok := def.EnumStrings[catvo.AttributeValueID(value)]; !ok {
-			return constants.QuerryValueExpired, true
+			return constants.QueryValueExpired, true
 		} else {
 			return "", false
 		}
@@ -20,7 +20,7 @@ func ValidateQuery(query *catvo.Query, attributes catvo.Attributes) (constants.Q
 
 	areValuesExpired := func(values []string, def catvo.AttributeDefinition) (constants.QueryError, bool) {
 		if len(values) < 1 {
-			return constants.MissingQuerryFieldValues, true
+			return constants.MissingQueryFieldValues, true
 		}
 		for _, v := range values {
 			if res, ok := isValueExpired(v, def); ok {
@@ -48,10 +48,10 @@ func ValidateQuery(query *catvo.Query, attributes catvo.Attributes) (constants.Q
 				case e.Matcher.StringNotEquals != nil:
 					errorMessage, hasError = isValueExpired(e.Matcher.StringNotEquals.Value, def)
 				default:
-					errorMessage, hasError = constants.MissingQuerryCondition, true
+					errorMessage, hasError = constants.MissingQueryCondition, true
 				}
 			} else {
-				return constants.MissingQuerryField, true
+				return constants.MissingQueryField, true
 			}
 		}
 
