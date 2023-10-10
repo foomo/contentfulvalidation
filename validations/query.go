@@ -5,59 +5,50 @@ import (
 	"github.com/foomo/contentfulvalidation/constants"
 )
 
-func ValidateQuery(query *catvo.Query, attributes catvo.Attributes) (constants.QueryError, bool) {
+func ValidateQuery(query *catvo.Query, attributes catvo.Attributes) []constants.QueryError {
+	errors := []constants.QueryError{}
 
-	isValueExpired := func(value string, def catvo.AttributeDefinition) (constants.QueryError, bool) {
+	isValueExpired := func(value string, def catvo.AttributeDefinition) {
 		if len(value) < 1 {
-			return constants.MissingQueryFieldValues, true
-		}
-		if _, ok := def.EnumStrings[catvo.AttributeValueID(value)]; !ok {
-			return constants.QueryValueExpired, true
+			errors = append(errors, constants.MissingQueryFieldValues)
 		} else {
-			return "", false
+			if _, ok := def.EnumStrings[catvo.AttributeValueID(value)]; !ok {
+				errors = append(errors, constants.QueryValueExpired)
+			}
 		}
 	}
 
-	areValuesExpired := func(values []string, def catvo.AttributeDefinition) (constants.QueryError, bool) {
+	areValuesExpired := func(values []string, def catvo.AttributeDefinition) {
 		if len(values) < 1 {
-			return constants.MissingQueryFieldValues, true
+			errors = append(errors, constants.MissingQueryFieldValues)
 		}
 		for _, v := range values {
-			if res, ok := isValueExpired(v, def); ok {
-				return res, true
-			}
+			isValueExpired(v, def)
 		}
-		return "", false
 	}
 
 	for _, e := range query.Elements {
-		errorMessage := constants.QueryError("")
-		hasError := false
-
 		if e.Matcher != nil {
 			if def, ok := attributes[e.Matcher.Attribute]; ok {
 				switch {
 				case e.Matcher.StringIn != nil:
-					errorMessage, hasError = areValuesExpired(e.Matcher.StringIn.Values, def)
+					areValuesExpired(e.Matcher.StringIn.Values, def)
 				case e.Matcher.StringAllIn != nil:
-					errorMessage, hasError = areValuesExpired(e.Matcher.StringAllIn.Values, def)
+					areValuesExpired(e.Matcher.StringAllIn.Values, def)
 				case e.Matcher.StringNotIn != nil:
-					errorMessage, hasError = areValuesExpired(e.Matcher.StringNotIn.Values, def)
+					areValuesExpired(e.Matcher.StringNotIn.Values, def)
 				case e.Matcher.StringEquals != nil:
-					errorMessage, hasError = isValueExpired(e.Matcher.StringEquals.Value, def)
+					isValueExpired(e.Matcher.StringEquals.Value, def)
 				case e.Matcher.StringNotEquals != nil:
-					errorMessage, hasError = isValueExpired(e.Matcher.StringNotEquals.Value, def)
+					isValueExpired(e.Matcher.StringNotEquals.Value, def)
 				default:
-					errorMessage, hasError = constants.MissingQueryCondition, true
+					errors = append(errors, constants.MissingQueryCondition)
 				}
 			} else {
-				return constants.MissingQueryField, true
+				errors = append(errors, constants.MissingQueryField)
 			}
 		}
-
-		if hasError {
-			return errorMessage, hasError
-		}
 	}
-	return "", false
+
+	return errors
 }
