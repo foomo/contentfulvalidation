@@ -24,7 +24,7 @@ type ValidationGoTSRPCProxy struct {
 }
 
 func NewDefaultValidationGoTSRPCProxy(service Validation) *ValidationGoTSRPCProxy {
-	return NewValidationGoTSRPCProxy(service, "/services/contenfulvalidation/validation")
+	return NewValidationGoTSRPCProxy(service, "/services/contentfulvalidation/validation")
 }
 
 func NewValidationGoTSRPCProxy(service Validation, endpoint string) *ValidationGoTSRPCProxy {
