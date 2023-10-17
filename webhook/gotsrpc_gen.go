@@ -21,7 +21,7 @@ type WebhookGoTSRPCProxy struct {
 }
 
 func NewDefaultWebhookGoTSRPCProxy(service Webhook) *WebhookGoTSRPCProxy {
-	return NewWebhookGoTSRPCProxy(service, "/services/contenfulvalidation/webhook")
+	return NewWebhookGoTSRPCProxy(service, "/services/contentfulvalidation/webhook")
 }
 
 func NewWebhookGoTSRPCProxy(service Webhook, endpoint string) *WebhookGoTSRPCProxy {

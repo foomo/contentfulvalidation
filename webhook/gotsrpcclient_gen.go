@@ -22,7 +22,7 @@ type HTTPWebhookGoTSRPCClient struct {
 }
 
 func NewDefaultWebhookGoTSRPCClient(url string) *HTTPWebhookGoTSRPCClient {
-	return NewWebhookGoTSRPCClient(url, "/services/contenfulvalidation/webhook")
+	return NewWebhookGoTSRPCClient(url, "/services/contentfulvalidation/webhook")
 }
 
 func NewWebhookGoTSRPCClient(url string, endpoint string) *HTTPWebhookGoTSRPCClient {

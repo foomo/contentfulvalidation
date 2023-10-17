@@ -36,7 +36,9 @@ func (ap *AttributeProvider) Init() error {
 	_, err := s.Every(1).Day().At("03:00").Do(func() {
 		ap.attributes = ap.updateFunc(ap.ctx)
 	})
-	log.Must(ap.l, err, "failed to ...")
+	if err != nil {
+		log.Must(ap.l, err, "failed to initialize attribute provider scheduler")
+	}
 	s.StartAsync()
 	return nil
 }

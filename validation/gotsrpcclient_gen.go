@@ -26,7 +26,7 @@ type HTTPValidationGoTSRPCClient struct {
 }
 
 func NewDefaultValidationGoTSRPCClient(url string) *HTTPValidationGoTSRPCClient {
-	return NewValidationGoTSRPCClient(url, "/services/contenfulvalidation/validation")
+	return NewValidationGoTSRPCClient(url, "/services/contentfulvalidation/validation")
 }
 
 func NewValidationGoTSRPCClient(url string, endpoint string) *HTTPValidationGoTSRPCClient {

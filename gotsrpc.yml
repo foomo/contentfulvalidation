@@ -5,13 +5,13 @@ module:
 targets:
   validation:
     services:
-      /services/contenfulvalidation/validation: Validation
+      /services/contentfulvalidation/validation: Validation
     package: github.com/foomo/contentfulvalidation/validation
     tsrpc:
       - Validation
   webhook:
     services:
-      /services/contenfulvalidation/webhook: Webhook
+      /services/contentfulvalidation/webhook: Webhook
     package: github.com/foomo/contentfulvalidation/webhook
     tsrpc:
       - Webhook
