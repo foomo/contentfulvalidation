@@ -41,6 +41,13 @@ func ValidateQuery(query *catvo.Query, attributes catvo.Attributes) []constants.
 					isValueExpired(e.Matcher.StringEquals.Value, def)
 				case e.Matcher.StringNotEquals != nil:
 					isValueExpired(e.Matcher.StringNotEquals.Value, def)
+				case e.Matcher.IntInRange != nil:
+				case e.Matcher.IntFrom != nil:
+				case e.Matcher.IntTo != nil:
+				case e.Matcher.IntEquals != nil:
+				case e.Matcher.IntNotEquals != nil:
+				case e.Matcher.BoolEquals != nil:
+				case e.Matcher.Bitmap != nil:
 				default:
 					errors = append(errors, constants.MissingQueryCondition)
 				}
