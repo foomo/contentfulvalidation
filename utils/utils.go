@@ -9,20 +9,6 @@ import (
 	"github.com/pkg/errors"
 )
 
-type imageSize struct {
-	Width  int
-	Height int
-}
-
-var allowedImageSizes = []imageSize{
-	{Width: 3840, Height: 1420},
-	{Width: 900, Height: 1000},
-	{Width: 1400, Height: 1866},
-	{Width: 1866, Height: 1400},
-	{Width: 1840, Height: 520},
-	{Width: 2500, Height: 1666},
-}
-
 func GetAssetImage(asset *contentful.AssetNoLocale) *contentful.FileImage {
 	if asset != nil && asset.Fields != nil && asset.Fields.File != nil && asset.Fields.File.Detail != nil && asset.Fields.File.Detail.Image != nil {
 		return asset.Fields.File.Detail.Image
@@ -65,17 +51,4 @@ func ConvertTimeFormat(timeToFormat string, parseTemplate string, formatTemplate
 		return "", err
 	}
 	return p.Format(formatTemplate), nil
-}
-
-func IsCorrectImageSize(asset *contentful.AssetNoLocale) bool {
-	image := GetAssetImage(asset)
-	if image == nil {
-		return false
-	}
-	for _, allowedImageSize := range allowedImageSizes {
-		if image.Height == allowedImageSize.Height && image.Width == allowedImageSize.Width {
-			return true
-		}
-	}
-	return false
 }
