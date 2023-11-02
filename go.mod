@@ -3,7 +3,7 @@ module github.com/foomo/contentfulvalidation
 go 1.20
 
 require (
-	github.com/bestbytes/catalogue v0.39.0
+	github.com/RoaringBitmap/roaring v1.3.0
 	github.com/foomo/contentful v0.4.4
 	github.com/foomo/contentserver v1.10.2
 	github.com/foomo/gotsrpc/v2 v2.7.2
@@ -14,7 +14,6 @@ require (
 )
 
 require (
-	github.com/RoaringBitmap/roaring v1.3.0 // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/bits-and-blooms/bitset v1.8.0 // indirect
 	github.com/cespare/xxhash/v2 v2.2.0 // indirect

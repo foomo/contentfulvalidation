@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"time"
 
-	catvo "github.com/bestbytes/catalogue/vo"
 	"github.com/foomo/contentful"
+	"github.com/foomo/contentfulvalidation/constants"
 	"github.com/pkg/errors"
 )
 
@@ -43,8 +43,8 @@ func GetAspectRatio(asset *contentful.AssetNoLocale) (float64, error) {
 	return aspectRatio, nil
 }
 
-func LoadQuery(rawQuery any) (*catvo.Query, error) {
-	query := &catvo.Query{}
+func LoadQuery(rawQuery *interface{}) (*constants.Query, error) {
+	query := &constants.Query{}
 	errMarshal := loadInterfaceAsJSON(rawQuery, query)
 	if errMarshal != nil {
 		return nil, errMarshal
