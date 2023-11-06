@@ -1,0 +1,132 @@
+{
+  "Explanation": "",
+  "Operation": "OR",
+  "Elements": [
+    {
+      "Matcher": {
+				"Attribute": "attributeBeautyBristlesType",
+				"Explanation": "",
+				"StringIn": null,
+				"StringAllIn": null,
+				"StringEquals": {"value": "Kunststoff"},
+				"StringNotEquals": null,
+				"IntInRange": null,
+				"IntFrom": null,
+				"IntTo": null,
+				"IntEquals": null,
+				"IntNotEquals": null,
+				"BoolEquals": null,
+				"Bitmap": null
+			},
+      "Query": null
+    },
+    {
+      "Matcher": {
+				"Attribute": "attributeBeautyBristlesType",
+				"Explanation": "",
+				"StringIn": null,
+				"StringAllIn": null,
+				"StringEquals": {"value": "Metallnoppen"},
+				"StringNotEquals": null,
+				"IntInRange": null,
+				"IntFrom": null,
+				"IntTo": null,
+				"IntEquals": null,
+				"IntNotEquals": null,
+				"BoolEquals": null,
+				"Bitmap": null
+			},
+      "Query": null
+    },
+    {
+      "Matcher": {
+				"Attribute": "asdfasd",
+				"Explanation": "",
+				"StringIn": null,
+				"StringAllIn": null,
+				"StringEquals": {"value": "Metallnoppen"},
+				"StringNotEquals": null,
+				"IntInRange": null,
+				"IntFrom": null,
+				"IntTo": null,
+				"IntEquals": null,
+				"IntNotEquals": null,
+				"BoolEquals": null,
+				"Bitmap": null
+			},
+      "Query": null
+    },
+    {
+      "Matcher": {
+				"Attribute": "attributeBeautyBristlesType",
+				"Explanation": "",
+				"StringIn": null,
+				"StringAllIn": null,
+				"StringEquals": {"value": "asfd"},
+				"StringNotEquals": null,
+				"IntInRange": null,
+				"IntFrom": null,
+				"IntTo": null,
+				"IntEquals": null,
+				"IntNotEquals": null,
+				"BoolEquals": null,
+				"Bitmap": null
+			},
+      "Query": null
+    },
+    {
+      "Matcher": {
+				"Attribute": "attributeBeautyBristlesType",
+				"Explanation": "",
+				"StringIn": null,
+				"StringAllIn": null,
+				"StringEquals": {"value": ""},
+				"StringNotEquals": null,
+				"IntInRange": null,
+				"IntFrom": null,
+				"IntTo": null,
+				"IntEquals": null,
+				"IntNotEquals": null,
+				"BoolEquals": null,
+				"Bitmap": null
+			},
+      "Query": null
+    },
+    {
+      "Matcher": {
+				"Attribute": "attributeBeautyBristlesType",
+				"Explanation": "",
+				"StringIn": null,
+				"StringAllIn": null,
+				"StringEquals": null,
+				"StringNotEquals": null,
+				"IntInRange": null,
+				"IntFrom": null,
+				"IntTo": null,
+				"IntEquals": null,
+				"IntNotEquals": null,
+				"BoolEquals": null,
+				"Bitmap": null
+			},
+      "Query": null
+    },
+    {
+      "Matcher": {
+				"Attribute": "",
+				"Explanation": "",
+				"StringIn": null,
+				"StringAllIn": null,
+				"StringEquals": null,
+				"StringNotEquals": null,
+				"IntInRange": null,
+				"IntFrom": null,
+				"IntTo": null,
+				"IntEquals": null,
+				"IntNotEquals": null,
+				"BoolEquals": null,
+				"Bitmap": null
+			},
+      "Query": null
+    }
+  ]
+}
