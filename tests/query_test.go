@@ -8,7 +8,8 @@ import (
 
 	"github.com/foomo/contentfulvalidation/constants"
 	"github.com/foomo/contentfulvalidation/validations"
-	testingx "github.com/foomo/go/testing"
+
+	// testingx "github.com/foomo/go/testing"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -37,7 +38,7 @@ func getMockQuery() constants.Query {
 }
 
 func Test_Query(t *testing.T) {
-	testingx.Tags(t)
+	// testingx.Tags(t)
 
 	query := getMockQuery()
 	testResult := []constants.QueryError{"Query Field is empty", "Query field value is expired", "Missing field values", "Missing query condition", "Query Field is empty"}
