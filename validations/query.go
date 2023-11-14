@@ -1,23 +1,24 @@
 package validations
 
 import (
+	catvo "github.com/bestbytes/catalogue/vo"
 	"github.com/foomo/contentfulvalidation/constants"
 )
 
-func ValidateQuery(query *constants.Query, attributes constants.Attributes) []constants.QueryError {
+func ValidateQuery(query *catvo.Query, attributes catvo.Attributes) []constants.QueryError {
 	errors := []constants.QueryError{}
 
-	isValueExpired := func(value string, def constants.AttributeDefinition) {
+	isValueExpired := func(value string, def catvo.AttributeDefinition) {
 		if len(value) < 1 {
 			errors = append(errors, constants.MissingQueryFieldValues)
 		} else {
-			if _, ok := def.EnumStrings[constants.AttributeValueID(value)]; !ok {
+			if _, ok := def.EnumStrings[catvo.AttributeValueID(value)]; !ok {
 				errors = append(errors, constants.QueryValueExpired)
 			}
 		}
 	}
 
-	areValuesExpired := func(values []string, def constants.AttributeDefinition) {
+	areValuesExpired := func(values []string, def catvo.AttributeDefinition) {
 		if len(values) < 1 {
 			errors = append(errors, constants.MissingQueryFieldValues)
 		}

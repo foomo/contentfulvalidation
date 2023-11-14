@@ -4,19 +4,19 @@ import (
 	"context"
 	"time"
 
-	"github.com/foomo/contentfulvalidation/constants"
+	"github.com/bestbytes/catalogue/vo"
 	"github.com/foomo/keel/log"
 	"github.com/go-co-op/gocron"
 	"go.uber.org/zap"
 )
 
-type AttributeProviderFunc func() constants.Attributes
-type AttributeUpdateFunc func(ctx context.Context) constants.Attributes
+type AttributeProviderFunc func() vo.Attributes
+type AttributeUpdateFunc func(ctx context.Context) vo.Attributes
 
 type AttributeProvider struct {
 	l          *zap.Logger
 	ctx        context.Context
-	attributes constants.Attributes
+	attributes vo.Attributes
 	updateFunc AttributeUpdateFunc
 }
 
@@ -43,6 +43,6 @@ func (ap *AttributeProvider) Init() error {
 	return nil
 }
 
-func (ap *AttributeProvider) GetAttributes() constants.Attributes {
+func (ap *AttributeProvider) GetAttributes() vo.Attributes {
 	return ap.attributes
 }
