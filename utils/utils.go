@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"time"
 
-	catvo "github.com/bestbytes/catalogue/vo"
 	"github.com/foomo/contentful"
 	"github.com/pkg/errors"
 )
@@ -43,15 +42,7 @@ func GetAspectRatio(asset *contentful.AssetNoLocale) (float64, error) {
 	return aspectRatio, nil
 }
 
-func LoadQuery(rawQuery any) (*catvo.Query, error) {
-	query := &catvo.Query{}
-	errMarshal := loadInterfaceAsJSON(rawQuery, query)
-	if errMarshal != nil {
-		return nil, errMarshal
-	}
-	return query, nil
-}
-func loadInterfaceAsJSON(source interface{}, target interface{}) error {
+func LoadInterfaceAsJSON(source interface{}, target interface{}) error {
 	jsonBytes, errMarshal := json.Marshal(source)
 	if errMarshal != nil {
 		return errMarshal
@@ -78,4 +69,20 @@ func IsCorrectImageSize(asset *contentful.AssetNoLocale) bool {
 		}
 	}
 	return false
+}
+
+func IsLandscapeRatio(asset *contentful.AssetNoLocale) bool {
+	aspectRatio, err := GetAspectRatio(asset)
+	if err != nil {
+		return false
+	}
+	return aspectRatio >= 1.00
+}
+
+func IsPortraitRatio(asset *contentful.AssetNoLocale) bool {
+	aspectRatio, err := GetAspectRatio(asset)
+	if err != nil {
+		return false
+	}
+	return aspectRatio <= 1.00
 }

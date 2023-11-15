@@ -7,6 +7,6 @@ type ModelValidator interface {
 	ValidateAll() (map[ModelID]*ValidationResult, error)
 }
 
-type ValidatorProvider interface {
+type ValidatorProvider interface { //nolint:revive
 	GetValidators() map[ModelType]ModelValidator
 }
