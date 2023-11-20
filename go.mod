@@ -5,7 +5,7 @@ go 1.20
 require (
 	github.com/foomo/contentful v0.4.4
 	github.com/foomo/contentserver v1.10.2
-	github.com/foomo/gotsrpc/v2 v2.7.2
+	github.com/foomo/gotsrpc/v2 v2.7.3
 	github.com/foomo/keel v0.16.1
 	github.com/pkg/errors v0.9.1
 	go.uber.org/zap v1.25.0
