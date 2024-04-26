@@ -33,7 +33,7 @@ jobs:
       - name: Run tests
         run: make test
 
-      - uses: coverallsapp/github-action@v2
-        with:
-          file: coverage.out
+#      - uses: coverallsapp/github-action@v2
+#        with:
+#          file: coverage.out
 
