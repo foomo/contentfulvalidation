@@ -56,12 +56,15 @@ func (p *ValidationGoTSRPCProxy) ServeHTTP(w http.ResponseWriter, r *http.Reques
 			rets []interface{}
 		)
 		executionStart := time.Now()
-		listModelTypesAvailableModelTypes := p.service.ListModelTypes()
+		rw := gotsrpc.ResponseWriter{ResponseWriter: w}
+		listModelTypesAvailableModelTypes := p.service.ListModelTypes(&rw, r)
 		callStats.Execution = time.Since(executionStart)
-		rets = []interface{}{listModelTypesAvailableModelTypes}
-		if err := gotsrpc.Reply(rets, callStats, r, w); err != nil {
-			gotsrpc.ErrorCouldNotReply(w)
-			return
+		if rw.Status() == http.StatusOK {
+			rets = []interface{}{listModelTypesAvailableModelTypes}
+			if err := gotsrpc.Reply(rets, callStats, r, w); err != nil {
+				gotsrpc.ErrorCouldNotReply(w)
+				return
+			}
 		}
 		gotsrpc.Monitor(w, r, args, rets, callStats)
 		return
@@ -81,12 +84,15 @@ func (p *ValidationGoTSRPCProxy) ServeHTTP(w http.ResponseWriter, r *http.Reques
 			return
 		}
 		executionStart := time.Now()
-		validateEntityValidationResult, validateEntityValidationError := p.service.ValidateEntity(arg_modelType, arg_modelID, arg_commit)
+		rw := gotsrpc.ResponseWriter{ResponseWriter: w}
+		validateEntityValidationResult, validateEntityValidationError := p.service.ValidateEntity(&rw, r, arg_modelType, arg_modelID, arg_commit)
 		callStats.Execution = time.Since(executionStart)
-		rets = []interface{}{validateEntityValidationResult, validateEntityValidationError}
-		if err := gotsrpc.Reply(rets, callStats, r, w); err != nil {
-			gotsrpc.ErrorCouldNotReply(w)
-			return
+		if rw.Status() == http.StatusOK {
+			rets = []interface{}{validateEntityValidationResult, validateEntityValidationError}
+			if err := gotsrpc.Reply(rets, callStats, r, w); err != nil {
+				gotsrpc.ErrorCouldNotReply(w)
+				return
+			}
 		}
 		gotsrpc.Monitor(w, r, args, rets, callStats)
 		return
@@ -105,12 +111,15 @@ func (p *ValidationGoTSRPCProxy) ServeHTTP(w http.ResponseWriter, r *http.Reques
 			return
 		}
 		executionStart := time.Now()
-		validationResultValidationResult, validationResultValidationError := p.service.ValidationResult(arg_modelType, arg_modelID)
+		rw := gotsrpc.ResponseWriter{ResponseWriter: w}
+		validationResultValidationResult, validationResultValidationError := p.service.ValidationResult(&rw, r, arg_modelType, arg_modelID)
 		callStats.Execution = time.Since(executionStart)
-		rets = []interface{}{validationResultValidationResult, validationResultValidationError}
-		if err := gotsrpc.Reply(rets, callStats, r, w); err != nil {
-			gotsrpc.ErrorCouldNotReply(w)
-			return
+		if rw.Status() == http.StatusOK {
+			rets = []interface{}{validationResultValidationResult, validationResultValidationError}
+			if err := gotsrpc.Reply(rets, callStats, r, w); err != nil {
+				gotsrpc.ErrorCouldNotReply(w)
+				return
+			}
 		}
 		gotsrpc.Monitor(w, r, args, rets, callStats)
 		return
@@ -128,12 +137,15 @@ func (p *ValidationGoTSRPCProxy) ServeHTTP(w http.ResponseWriter, r *http.Reques
 			return
 		}
 		executionStart := time.Now()
-		validationResultsValidationResults, validationResultsValidationError := p.service.ValidationResults(arg_modelType)
+		rw := gotsrpc.ResponseWriter{ResponseWriter: w}
+		validationResultsValidationResults, validationResultsValidationError := p.service.ValidationResults(&rw, r, arg_modelType)
 		callStats.Execution = time.Since(executionStart)
-		rets = []interface{}{validationResultsValidationResults, validationResultsValidationError}
-		if err := gotsrpc.Reply(rets, callStats, r, w); err != nil {
-			gotsrpc.ErrorCouldNotReply(w)
-			return
+		if rw.Status() == http.StatusOK {
+			rets = []interface{}{validationResultsValidationResults, validationResultsValidationError}
+			if err := gotsrpc.Reply(rets, callStats, r, w); err != nil {
+				gotsrpc.ErrorCouldNotReply(w)
+				return
+			}
 		}
 		gotsrpc.Monitor(w, r, args, rets, callStats)
 		return
