@@ -1,12 +1,16 @@
 package validator
 
-import "github.com/foomo/contentfulvalidation/errors"
+import (
+	"context"
+
+	"github.com/foomo/contentfulvalidation/errors"
+)
 
 type ModelValidator interface {
-	Validate(modelID ModelID) (*ValidationResult, *errors.ValidationError)
-	ValidateAll() (map[ModelID]*ValidationResult, error)
+	Validate(ctx context.Context, modelID ModelID) (*ValidationResult, *errors.ValidationError)
+	ValidateAll(ctx context.Context) (map[ModelID]*ValidationResult, error)
 }
 
-type ValidatorProvider interface { //nolint:revive
+type ValidatorProvider interface {
 	GetValidators() map[ModelType]ModelValidator
 }
