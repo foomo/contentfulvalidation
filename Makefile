@@ -27,13 +27,11 @@ doc:
 .PHONY: test
 ## Run tests
 test:
-	@set -euo pipefail && go test -json -v ./...  | gotestfmt
+	@go test -coverprofile=coverage.out -race -json ./... | gotestfmt
 
 .PHONY: test.cover
 ## Run tests with coverage
-test.cover:
-	@go test -v -coverprofile=coverage.out ./...
-	@go tool cover -func=coverage.out
+test.cover: test
 	@go tool cover -html=coverage.out
 
 .PHONY: lint
