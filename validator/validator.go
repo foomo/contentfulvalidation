@@ -1,6 +1,7 @@
 package validator
 
 import (
+	"context"
 	"strings"
 	"time"
 
@@ -49,7 +50,7 @@ func (v *Validator) Get(modelType ModelType, modelID ModelID) (
 	return result, nil
 }
 
-func (v *Validator) Validate(modelType ModelType, modelID ModelID) (
+func (v *Validator) Validate(ctx context.Context, modelType ModelType, modelID ModelID) (
 	*ValidationResult,
 	*errors.ValidationError,
 ) {
@@ -58,7 +59,7 @@ func (v *Validator) Validate(modelType ModelType, modelID ModelID) (
 	if err != nil {
 		return nil, err
 	}
-	result, err := validator.Validate(modelID)
+	result, err := validator.Validate(ctx, modelID)
 	if err != nil {
 		return nil, err
 	}
@@ -129,10 +130,10 @@ func (v *Validator) ListModelTypes() []ModelType {
 	return availableTypes
 }
 
-func (v *Validator) ValidateAll() error {
+func (v *Validator) ValidateAll(ctx context.Context) error {
 	v.l.Debug("running validation on all model types")
 	for modelType, modelValidator := range v.Validators {
-		results, err := modelValidator.ValidateAll()
+		results, err := modelValidator.ValidateAll(ctx)
 		if err != nil {
 			keellog.WithError(v.l, err).Error("error on running validation", keellog.FValue(modelType))
 			continue
@@ -144,9 +145,9 @@ func (v *Validator) ValidateAll() error {
 	return nil
 }
 
-func (v *Validator) Update() {
+func (v *Validator) Update(ctx context.Context) {
 	v.l.Debug("received update signal")
-	err := v.ValidateAll()
+	err := v.ValidateAll(ctx)
 	if err != nil {
 		keellog.WithError(v.l, err).Error("error on validate all update")
 	}

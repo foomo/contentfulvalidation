@@ -63,12 +63,15 @@ func (p *WebhookGoTSRPCProxy) ServeHTTP(w http.ResponseWriter, r *http.Request) 
 			return
 		}
 		executionStart := time.Now()
-		p.service.UpdateCache(arg_sysType, arg_modelType, arg_modelID)
+		rw := gotsrpc.ResponseWriter{ResponseWriter: w}
+		p.service.UpdateCache(&rw, r, arg_sysType, arg_modelType, arg_modelID)
 		callStats.Execution = time.Since(executionStart)
-		rets = []interface{}{}
-		if err := gotsrpc.Reply(rets, callStats, r, w); err != nil {
-			gotsrpc.ErrorCouldNotReply(w)
-			return
+		if rw.Status() == http.StatusOK {
+			rets = []interface{}{}
+			if err := gotsrpc.Reply(rets, callStats, r, w); err != nil {
+				gotsrpc.ErrorCouldNotReply(w)
+				return
+			}
 		}
 		gotsrpc.Monitor(w, r, args, rets, callStats)
 		return
