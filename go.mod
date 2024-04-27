@@ -3,7 +3,7 @@ module github.com/foomo/contentfulvalidation
 go 1.21
 
 require (
-	github.com/foomo/contentful v0.5.0
+	github.com/foomo/contentful v0.5.1
 	github.com/foomo/contentserver v1.10.2
 	github.com/foomo/gotsrpc/v2 v2.8.1
 	github.com/foomo/keel v0.17.3
